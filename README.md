@@ -15,7 +15,8 @@ import http from 'k6/http';
 import { randomIntBetween, 
          randomString,
          randomItem,
-         uuidv4 } from "./src/utils.js";
+         uuidv4,
+         findBetween } from "./src/utils.js";
 
 export default function() {
 
@@ -26,6 +27,8 @@ export default function() {
     password: uuidv4() // random password in form of uuid
   });
 
+  let username = findBetween(res.body, '"username":"', '"'); // grab the username from surrounding strings
+  
   sleep(randomIntBetween(1, 5)); // sleep between 1 and 5 seconds.
 }
 ```
