@@ -32,3 +32,32 @@ export function findBetween(content, left, right) {
   }
   return content.substring(start, end);
 }
+
+function normalDensity(mean, scale, x) {
+  return Math.exp(-1/2 * Math.pow((x - mean)/scale, 2)) / (scale * Math.sqrt(2 * Math.PI))
+}
+
+export function normalDistributionStages(maxVU, duration, noStages = 1) {
+  const mean = 0;
+  const scale = 1;
+  //changing above will change the curve
+  let value = new Array(noStages+2).fill(0);
+  let durations = new Array(noStages+2).fill(Math.ceil(duration/6));
+  let normalStages = [];
+
+  for(let i = 0; i <= noStages; i++) {
+      value[i] = normalDensity(mean, scale, -2*scale + 4*scale*i/noStages)
+  };
+  let maxValue = Math.max(...value);
+  let users = value.map(x => Math.round(x * maxVU / maxValue));
+
+  for (let j = 1; j <= noStages; j++) {
+      durations[j] = Math.ceil(4*duration/(6*noStages))
+  };
+
+  for (let k = 0; k <= noStages+1; k++) {
+      normalStages.push({duration: `${durations[k]}s`, target: users[k]})
+  };
+
+  return normalStages
+}
