@@ -20,17 +20,37 @@ export function randomString(length) {
   return res;
 }
 
-export function findBetween(content, left, right) {
-  let start = content.indexOf(left);
-  if (start === -1) {
-    return '';
+export function findBetween(content, left, right, repeat = false) {
+  const extracted = [];
+  let doSearch = true;
+  let start, end = 0;
+  
+  while (doSearch) {
+    start = content.indexOf(left);
+    if (start == -1) {
+      break; // no more matches
+    }
+
+    start += left.length;
+    end = content.indexOf(right, start);
+    if (end == -1) {
+      break; // no more matches
+    }
+    let extractedContent = content.substring(start, end);
+
+    // stop here if only extracting one match (default behavior)
+    if (!repeat) {
+      return extractedContent; 
+    }
+
+    // otherwise, add it to the array
+    extracted.push(extractedContent);
+    
+    // update the "cursor" position to the end of the previous match
+    content = content.substring(end + right.length);
   }
-  start += left.length;
-  const end = content.indexOf(right, start);
-  if (end === -1) {
-    return '';
-  }
-  return content.substring(start, end);
+
+  return extracted.length ? extracted : null; // return all matches as an array or null
 }
 
 export function normalDistributionStages(maxVus, durationSeconds, numberOfStages=10) {
