@@ -15,7 +15,7 @@ export function randomItem(arrayOfItems){
 
 export function randomString(length, charset='abcdefghijklmnopqrstuvwxyz') {
   let res = '';
-  while (length--) res += charset[Math.random() * charset.length | 0];
+  while (length--) res += charset[(Math.random() * charset.length) | 0];
   return res;
 }
 
