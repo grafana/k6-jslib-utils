@@ -13,8 +13,7 @@ export function randomItem(arrayOfItems){
   return arrayOfItems[Math.floor(Math.random() * arrayOfItems.length)];
 }
 
-export function randomString(length, charset='') {
-  if (!charset) charset = 'abcdefghijklmnopqrstuvwxyz';
+export function randomString(length, charset='abcdefghijklmnopqrstuvwxyz') {
   let res = '';
   while (length--) res += charset[Math.random() * charset.length | 0];
   return res;
