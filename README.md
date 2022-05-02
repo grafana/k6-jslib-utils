@@ -32,3 +32,8 @@ export default function() {
   sleep(randomIntBetween(1, 5)); // sleep between 1 and 5 seconds.
 }
 ```
+
+### Publish a new version
+1. Build a new minified version using the webpack command `npm run webpack`.
+2. Follow the jslib.k6.io [procedure](https://github.com/grafana/jslib.k6.io#how-to-add-a-new-version-of-a-and-existing-package) for creating a new version.
+3. Copy the generated `./build/index.min.js` in the expected folder as `index.js` and open a new PR to [jslib.k6.io](https://github.com/grafana/jslib.k6.io). 
