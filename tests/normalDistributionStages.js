@@ -1,14 +1,14 @@
-import { sleep } from 'k6';
-import exec from 'k6/execution';
+import { sleep } from 'k6'
+import exec from 'k6/execution'
 import { normalDistributionStages } from '../src/utils.js'
 
 export const options = {
-  stages: normalDistributionStages(10, 20, 5)
+    stages: normalDistributionStages(10, 20, 5),
 }
 
 export default function () {
-  console.log(exec.instance.vusActive)
-  sleep(1)
+    console.log(exec.instance.vusActive)
+    sleep(1)
 }
 
 /*
