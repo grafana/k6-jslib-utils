@@ -1,0 +1,6 @@
+# Ignore artifacts
+build
+coverage
+.prettierrc.json
+babel.config.json
+webpack.config.js
