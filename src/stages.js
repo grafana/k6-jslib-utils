@@ -79,6 +79,11 @@ function isNumber(c) {
 
 // getCurrentStageIndex returns the computed index of the running stage.
 function getCurrentStageIndex() {
+	if (exec == undefined || exec.test == undefined || exec.test.options == undefined) {
+		throw new Error(`k6/execution.test.options is undefined - getCurrentStageIndex requires a k6 v0.38.0 or later. Please, upgrade for getting k6/execution.test.options supported.`)
+
+	}
+
 	let scenario = exec.test.options.scenarios[exec.scenario.name]
 	if (scenario == null)	{
 		throw new Error(`the exec.test.options object doesn't contain the current scenario ${exec.scenario.name}`)
