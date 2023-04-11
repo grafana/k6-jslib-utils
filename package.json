@@ -10,6 +10,9 @@
         "@types/webpack": "^5.28.0",
         "babel-loader": "^8.0.6",
         "clean-webpack-plugin": "^4.0.0",
+        "husky": "^7.0.4",
+        "lint-staged": "^12.4.1",
+        "prettier": "2.6.2",
         "terser-webpack-plugin": "^5.3.1",
         "webpack": "^5.72.0",
         "webpack-cli": "^4.9.2",
@@ -18,11 +21,15 @@
     "engines": {},
     "scripts": {
         "webpack": "webpack",
-        "test": "./k6 run tests/"
+        "test": "./k6 run tests/",
+        "prepare": "husky install"
     },
     "keywords": [
         "k6"
     ],
     "author": "k6 team",
-    "license": "MIT"
+    "license": "MIT",
+    "lint-staged": {
+        "**/*": "prettier --write --ignore-unknown"
+    }
 }
