@@ -7,6 +7,8 @@
         "@babel/core": "^7.4.4",
         "@babel/plugin-transform-block-scoping": "^7.14.1",
         "@babel/preset-env": "^7.4.4",
+        "@babel/preset-typescript": "^7.24.7",
+        "@types/k6": "^0.52.0",
         "@types/webpack": "^5.28.0",
         "babel-loader": "^8.0.6",
         "clean-webpack-plugin": "^4.0.0",
@@ -21,7 +23,7 @@
     "engines": {},
     "scripts": {
         "webpack": "webpack",
-        "test": "./k6 run tests/",
+        "test": "k6 run --compatibility-mode=experimental_enhanced tests/",
         "prepare": "husky install"
     },
     "keywords": [
