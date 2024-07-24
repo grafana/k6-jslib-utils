@@ -7,7 +7,6 @@
         "@babel/core": "^7.4.4",
         "@babel/plugin-transform-block-scoping": "^7.14.1",
         "@babel/preset-env": "^7.4.4",
-        "@babel/preset-typescript": "^7.24.7",
         "@types/k6": "^0.52.0",
         "@types/webpack": "^5.28.0",
         "babel-loader": "^8.0.6",
@@ -16,6 +15,7 @@
         "lint-staged": "^12.4.1",
         "prettier": "2.6.2",
         "terser-webpack-plugin": "^5.3.1",
+        "ts-loader": "^9.5.1",
         "webpack": "^5.72.0",
         "webpack-cli": "^4.9.2",
         "webpack-glob-entries": "^1.0.1"
@@ -23,7 +23,7 @@
     "engines": {},
     "scripts": {
         "webpack": "webpack",
-        "test": "k6 run --compatibility-mode=experimental_enhanced tests/",
+        "test": "k6 run tests/",
         "prepare": "husky install"
     },
     "keywords": [

@@ -17,11 +17,16 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			// {
+			// 	test: /\.js$/,
+			// 	loader: 'babel-loader',
+			// 	exclude: /node_modules/,
+			// },
 			{
 				test: /\.(j|t)s$/,
-				loader: 'babel-loader',
+				loader: 'ts-loader',
 				exclude: /node_modules/,
-			}, 
+			} 
 		],
 	},
 	stats: {
