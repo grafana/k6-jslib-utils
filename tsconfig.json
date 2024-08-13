@@ -7,8 +7,6 @@
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "declaration": true,
-        "declarationDir": "./build",
         "allowJs": true
     },
     "include": ["src/**/*.ts", "src/**/*.js"]
