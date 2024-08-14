@@ -27,22 +27,25 @@ type CheckResult<C extends CheckMap<any>> = C extends SyncCheckMap ? boolean : P
 
 const checkRate = new Rate('checks')
 
-export function check<C extends CheckMap<any>>(checkers: C): CheckResult<C>
-export function check<T, C extends CheckMap<T>>(value: T, checkers: C): CheckResult<C>
-export function check<T, C extends CheckMap<T>>(value: T | C, checkers?: C): CheckResult<C> {
-    const checkMap = checkers || (value as C)
-
-    const results = Object.entries(checkMap).map(([key, checker]) => {
+export function check<T, C extends CheckMap<T>>(
+    value: T,
+    checkers: C,
+    tags?: Record<string, string>
+): CheckResult<C> {
+    const results = Object.entries(checkers).map(([key, checker]) => {
         function reportResult(value: FalsyCheckValue): FalsyCheckValue {
-            checkRate.add(value ? 1 : 0, {
-                check: key,
-            })
+            checkRate.add(
+                value ? 1 : 0,
+                Object.assign({}, tags, {
+                    check: key,
+                })
+            )
 
             return value
         }
 
         if (typeof checker === 'function') {
-            const result = checker(value as T)
+            const result = checker(value)
 
             if (result instanceof Promise) {
                 return result.then(reportResult)
