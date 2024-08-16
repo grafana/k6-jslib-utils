@@ -1,6 +1,6 @@
 import { Rate } from 'k6/metrics'
 
-type FalsyCheckValue =
+type CheckValue =
     | Array<unknown>
     | Record<string | number | symbol, unknown>
     | boolean
@@ -10,17 +10,17 @@ type FalsyCheckValue =
     | undefined
 
 type Checker<T> =
-    | ((value: T) => FalsyCheckValue)
-    | ((value: T) => Promise<FalsyCheckValue>)
-    | FalsyCheckValue
-    | Promise<FalsyCheckValue>
+    | ((value: T) => CheckValue)
+    | ((value: T) => Promise<CheckValue>)
+    | CheckValue
+    | Promise<CheckValue>
 
 interface CheckMap<T> {
     [key: string]: Checker<T>
 }
 
 interface SyncCheckMap {
-    [key: string]: ((value: any) => FalsyCheckValue) | FalsyCheckValue
+    [key: string]: ((value: any) => CheckValue) | CheckValue
 }
 
 type CheckResult<C extends CheckMap<any>> = C extends SyncCheckMap ? boolean : Promise<boolean>
@@ -33,7 +33,7 @@ export function check<T, C extends CheckMap<T>>(
     tags?: Record<string, string>
 ): CheckResult<C> {
     const results = Object.entries(checkers).map(([key, checker]) => {
-        function reportResult(value: FalsyCheckValue): FalsyCheckValue {
+        function reportResult(value: CheckValue): CheckValue {
             checkRate.add(
                 value ? 1 : 0,
                 Object.assign({}, tags, {

@@ -79,7 +79,11 @@ export default async function () {
     "This should pass too": () => "null",
     "And this should pass": 1 
   })
- 
+
+  const tagged = asyncCheck("", {
+    "I have tags": () => true,
+  }, { hello: "world" }) satisfies boolean
+  
   check(0, {
     "Function: sync check failed": () => syncFnFailed === false,
     "Function: sync check passed": () => syncFnPassed === true,
@@ -93,5 +97,6 @@ export default async function () {
     "Executes check asynchronously": () => executedAsync === true,
     "Fail if any check fails": () => failsIfAnyFail === false,
     "Pass if all checks pass": () => passIfAllPass === true,
-  }) 
+    "Could use tags": () => tagged === true,
+  })  
 }
