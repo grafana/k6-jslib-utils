@@ -14,7 +14,10 @@ import {
     uuidv4,
 } from './utils.js'
 
+import { check } from './check.ts'
+
 export {
+    check,
     parseDuration,
     getCurrentStageIndex,
     tagWithCurrentStageIndex,

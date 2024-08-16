@@ -2,6 +2,9 @@ const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+/**
+ * @type {import("webpack").Configuration}
+ */
 module.exports = {
 	mode: 'production',
 	entry: {
@@ -14,16 +17,24 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			// {
+			// 	test: /\.js$/,
+			// 	loader: 'babel-loader',
+			// 	exclude: /node_modules/,
+			// },
 			{
-				test: /\.js$/,
-				loader: 'babel-loader',
+				test: /\.(j|t)s$/,
+				loader: 'ts-loader',
 				exclude: /node_modules/,
-			},
+			} 
 		],
 	},
 	stats: {
 		colors: true,
 	},
+	externals: [
+		"k6/metrics"
+	],
 	target: 'web',
 	externals: /^(k6|https?\:\/\/)(\/.*)?/,
 	devtool: 'source-map',
