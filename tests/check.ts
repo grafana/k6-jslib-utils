@@ -14,38 +14,38 @@ function later<T>(value: () => T, delay = 100) {
 }
 
 export default async function () {
-  const syncFnFailed = asyncCheck({
+  const syncFnFailed = asyncCheck("", {
     "I should always fail": () => false,
   }) satisfies boolean
 
-  const syncFnPassed = asyncCheck({
+  const syncFnPassed = asyncCheck("", {
     "I should always pass": () => true,
   }) satisfies boolean 
  
-  const asyncFnFailedPromise = asyncCheck({
+  const asyncFnFailedPromise = asyncCheck("", {
     "I should always fail": () => later(() => false),
   }) satisfies Promise<boolean>
-
-  const asyncFnPassedPromise = asyncCheck({
+ 
+  const asyncFnPassedPromise = asyncCheck("", {
     "I should always pass": () => later(() => true),
   }) satisfies Promise<boolean> 
 
   const asyncFnFailed = await asyncFnFailedPromise
   const asyncFnPassed = await asyncFnPassedPromise
 
-  const syncValueFailed = asyncCheck({
+  const syncValueFailed = asyncCheck("", {
     "I should always fail": 0,
   }) satisfies boolean
 
-  const syncValuePassed = asyncCheck({
+  const syncValuePassed = asyncCheck("", {
     "I should always pass": 1,
   }) satisfies boolean
 
-  const asyncValueFailedPromise = asyncCheck({
+  const asyncValueFailedPromise = asyncCheck("", {
     "I should always fail": later(() => 0),
   }) satisfies Promise<boolean>
 
-  const asyncValuePassedPromise = asyncCheck({
+  const asyncValuePassedPromise = asyncCheck("", {
     "I should always pass": later(() => 1),
   }) satisfies Promise<boolean>
  
@@ -58,7 +58,7 @@ export default async function () {
 
   let executedAsync = true
  
-  asyncCheck({
+  asyncCheck("", {
     "I should always pass": later(() => {
       executedAsync = false
 
@@ -66,14 +66,14 @@ export default async function () {
     }, 1000),
   })
 
-  const failsIfAnyFail = await asyncCheck({
+  const failsIfAnyFail = await asyncCheck("", {
     "I should always fail": () => later(() => false),
     "I should always pass": later(() => true),
     "I should also always fail": () => null,
     "I should also always pass": 1,
   })
-
-  const passIfAllPass = await asyncCheck({
+ 
+  const passIfAllPass = await asyncCheck("", {
     "I should always pass": () => later(() => true),
     "I should also always pass": later(() => true),
     "This should pass too": () => "null",

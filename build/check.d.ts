@@ -7,6 +7,5 @@ interface SyncCheckMap {
     [key: string]: ((value: any) => FalsyCheckValue) | FalsyCheckValue;
 }
 type CheckResult<C extends CheckMap<any>> = C extends SyncCheckMap ? boolean : Promise<boolean>;
-export declare function check<C extends CheckMap<any>>(checkers: C): CheckResult<C>;
-export declare function check<T, C extends CheckMap<T>>(value: T, checkers: C): CheckResult<C>;
+export declare function check<T, C extends CheckMap<T>>(value: T, checkers: C, tags?: Record<string, string>): CheckResult<C>;
 export {};
