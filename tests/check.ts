@@ -56,6 +56,14 @@ export default async function () {
     a: (value: string) => value === "this is the value",
   }) satisfies boolean
 
+  const asyncValue = await asyncCheck(later(() => true), {
+    "I should be true": (value: boolean) => value,
+  })
+
+  const mixAsyncValueAndAsyncChecker = await asyncCheck(later(() => "This is my value."), {
+    "I should be true": (value: string) => later(() => value === "This is my value.")
+  }) 
+
   let executedAsync = true
  
   asyncCheck("", {
@@ -98,5 +106,7 @@ export default async function () {
     "Fail if any check fails": () => failsIfAnyFail === false,
     "Pass if all checks pass": () => passIfAllPass === true,
     "Could use tags": () => tagged === true,
+    "Async value": () => asyncValue === true,
+    "Mix async value and async checker": () => mixAsyncValueAndAsyncChecker === true
   })  
 }

@@ -8,4 +8,5 @@ interface SyncCheckMap {
 }
 type CheckResult<C extends CheckMap<any>> = C extends SyncCheckMap ? boolean : Promise<boolean>;
 export declare function check<T, C extends CheckMap<T>>(value: T, checkers: C, tags?: Record<string, string>): CheckResult<C>;
+export declare function check<T, C extends CheckMap<T>>(value: Promise<T>, checkers: C, tags?: Record<string, string>): Promise<CheckResult<C>>;
 export {};

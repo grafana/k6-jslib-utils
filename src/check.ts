@@ -31,7 +31,21 @@ export function check<T, C extends CheckMap<T>>(
     value: T,
     checkers: C,
     tags?: Record<string, string>
-): CheckResult<C> {
+): CheckResult<C>
+export function check<T, C extends CheckMap<T>>(
+    value: Promise<T>,
+    checkers: C,
+    tags?: Record<string, string>
+): Promise<CheckResult<C>>
+export function check<T, C extends CheckMap<T>>(
+    value: T | Promise<T>,
+    checkers: C,
+    tags?: Record<string, string>
+): CheckResult<C> | Promise<CheckResult<C>> {
+    if (value instanceof Promise) {
+        return value.then((value) => check(value, checkers, tags)) as Promise<CheckResult<C>>
+    }
+
     const results = Object.entries(checkers).map(([key, checker]) => {
         function reportResult(value: CheckValue): CheckValue {
             checkRate.add(
