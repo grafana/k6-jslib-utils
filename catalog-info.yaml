@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: k6-jslib-utils
+  title: k6-jslib-utils
+  description: |
+    A collection of small utility functions useful during load testing with k6.
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: grafana/k6-jslib-utils
+spec:
+  type: library
+  owner: group:default/k6-core
+  lifecycle: production
