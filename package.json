@@ -4,9 +4,9 @@
     "version": "1.3.0",
     "main": "src/index.js",
     "devDependencies": {
-        "@babel/core": "^7.4.4",
-        "@babel/plugin-transform-block-scoping": "^7.14.1",
-        "@babel/preset-env": "^7.4.4",
+        "@babel/core": "^7.28.5",
+        "@babel/plugin-transform-block-scoping": "^7.28.5",
+        "@babel/preset-env": "^7.28.5",
         "@types/k6": "^0.52.0",
         "@types/webpack": "^5.28.0",
         "babel-loader": "^8.0.6",
