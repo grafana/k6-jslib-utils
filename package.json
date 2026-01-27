@@ -12,7 +12,7 @@
         "babel-loader": "8.4.1",
         "clean-webpack-plugin": "4.0.0",
         "husky": "9.1.7",
-        "lint-staged": "12.5.0",
+        "lint-staged": "16.2.7",
         "prettier": "3.8.1",
         "terser-webpack-plugin": "5.3.16",
         "ts-loader": "9.5.1",
