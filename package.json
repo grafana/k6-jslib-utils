@@ -7,7 +7,7 @@
         "@babel/core": "7.28.5",
         "@babel/plugin-transform-block-scoping": "7.28.5",
         "@babel/preset-env": "7.28.5",
-        "@types/k6": "0.52.0",
+        "@types/k6": "1.6.0",
         "@types/webpack": "5.28.5",
         "babel-loader": "8.4.1",
         "clean-webpack-plugin": "4.0.0",
