@@ -16,7 +16,7 @@
         "prettier": "3.8.2",
         "terser-webpack-plugin": "5.4.0",
         "ts-loader": "9.5.7",
-        "webpack": "5.106.1",
+        "webpack": "5.106.2",
         "webpack-cli": "7.0.2",
         "webpack-glob-entries": "1.0.1"
     },
