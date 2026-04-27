@@ -14,7 +14,7 @@
         "husky": "9.1.7",
         "lint-staged": "12.5.0",
         "prettier": "3.8.3",
-        "terser-webpack-plugin": "5.4.0",
+        "terser-webpack-plugin": "5.5.0",
         "ts-loader": "9.5.7",
         "webpack": "5.106.1",
         "webpack-cli": "7.0.2",
