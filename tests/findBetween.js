@@ -1,6 +1,6 @@
 import { check } from 'k6'
 
-import { findBetween } from '../src/utils.js'
+import { findBetween } from '../src/index.js'
 
 export const options = {
     vus: 1,

@@ -12,7 +12,13 @@ Download the latest release from https://jslib.k6.io/
 import { sleep } from 'k6'
 import http from 'k6/http'
 
-import { randomIntBetween, randomString, randomItem, uuidv4, findBetween } from './src/utils.js'
+import {
+    randomIntBetween,
+    randomString,
+    randomItem,
+    uuidv4,
+    findBetween,
+} from 'https://jslib.k6.io/k6-utils/1.6.0/index.js'
 
 export default function () {
     let res = http.post(`https://test-api.k6.io/user/register/`, {
@@ -28,8 +34,16 @@ export default function () {
 }
 ```
 
+## Development
+
+`src/index.js` is a single self-contained ES module that k6 runs as-is — there is
+no build step or Node.js tooling. The tests run directly on the k6 runtime:
+
+```
+k6 run tests/findBetween.js
+```
+
 ### Publish a new version
 
-1. Build a new minified version using the webpack command `npm run webpack`.
-2. Follow the jslib.k6.io [procedure](https://github.com/grafana/jslib.k6.io#how-to-add-a-new-version-of-a-and-existing-package) for creating a new version.
-3. Copy the generated `./build/index.min.js` in the expected folder as `index.js` and open a new PR to [jslib.k6.io](https://github.com/grafana/jslib.k6.io).
+1. Follow the jslib.k6.io [procedure](https://github.com/grafana/jslib.k6.io#how-to-add-a-new-version-of-a-and-existing-package) for creating a new version.
+2. Copy `src/index.js` into the expected folder as `index.js` and open a new PR to [jslib.k6.io](https://github.com/grafana/jslib.k6.io).

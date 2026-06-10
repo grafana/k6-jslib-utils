@@ -1,6 +1,6 @@
 import { sleep } from 'k6'
 import exec from 'k6/execution'
-import { normalDistributionStages } from '../src/utils.js'
+import { normalDistributionStages } from '../src/index.js'
 
 export const options = {
     stages: normalDistributionStages(10, 20, 5),

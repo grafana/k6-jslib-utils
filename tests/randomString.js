@@ -1,6 +1,6 @@
 import { check } from 'k6'
 
-import { randomString } from '../src/utils.js'
+import { randomString } from '../src/index.js'
 
 export default function () {
     const charset = 'abcdefghijklmnopqrstuvwxyz'
