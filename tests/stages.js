@@ -7,7 +7,7 @@ import {
     getCurrentStageIndex,
     tagWithCurrentStageIndex,
     tagWithCurrentStageProfile,
-} from '../src/stages.js'
+} from '../src/index.js'
 
 export let options = {
     scenarios: {

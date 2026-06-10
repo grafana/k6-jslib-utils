@@ -1,5 +1,5 @@
 import { check } from 'k6'
-import { check as asyncCheck } from '../build/index.js'
+import { check as asyncCheck } from '../src/index.js'
 
 export const options = {
   iterations: 1,
