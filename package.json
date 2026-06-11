@@ -18,7 +18,7 @@
     "terser-webpack-plugin": "5.5.0",
     "ts-loader": "9.6.0",
     "webpack": "5.106.2",
-    "webpack-cli": "7.0.2",
+    "webpack-cli": "7.0.3",
     "webpack-glob-entries": "1.0.1"
   },
   "engines": {},
