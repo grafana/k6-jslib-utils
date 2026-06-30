@@ -5,7 +5,7 @@
   "packageManager": "npm@10.9.8",
   "main": "src/index.js",
   "devDependencies": {
-    "@babel/core": "7.29.0",
+    "@babel/core": "7.29.6",
     "@babel/plugin-transform-block-scoping": "7.28.6",
     "@babel/preset-env": "7.29.5",
     "@types/k6": "0.57.1",
