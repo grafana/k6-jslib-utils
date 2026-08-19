@@ -26,3 +26,4 @@ inlined as plain JS when the build was removed.)
 - Tests run with the k6 binary, not Node. Standard JS test runners will fail because the source imports k6 built-in modules that do not exist outside the k6 runtime.
 
 - Duration parsing accepts bare numbers without a time unit suffix and treats them as raw millisecond values. This is undocumented and easy to misuse if you assume a default unit of seconds.
+- Security issues should be reported via [Grafana's security issue reporting page](https://grafana.com/legal/report-a-security-issue/) and not directly in this repository.
