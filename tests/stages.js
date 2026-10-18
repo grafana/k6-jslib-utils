@@ -32,10 +32,10 @@ export let options = {
             ],
             exec: 'testTagWithCurrentStageIndex',
         },
-        tagWithRampUpWhenOnlyOne: {
+        tagWithSteadyWhenOnlyOne: {
             executor: 'ramping-vus',
             stages: [{ duration: '0.1s', target: 1 }],
-            exec: 'testTagWithRampUpProfileWhenOnlyOne',
+            exec: 'testTagWithSteadyProfileWhenOnlyOne',
         },
         tagWithRampUp: {
             executor: 'ramping-vus',
@@ -101,11 +101,11 @@ export function testTagWithCurrentStageIndex() {
     })
 }
 
-export function testTagWithRampUpProfileWhenOnlyOne() {
+export function testTagWithSteadyProfileWhenOnlyOne() {
     describe('tagWithCurrentStageProfile', () => {
-        describe(`tags with ramp-up profile when only one stage`, () => {
+        describe(`tags with steady profile when only one stage`, () => {
             tagWithCurrentStageProfile()
-            expect(exec.vu.tags['stage_profile']).to.be.equal('ramp-up')
+            expect(exec.vu.tags['stage_profile']).to.be.equal('steady')
         })
     })
 }

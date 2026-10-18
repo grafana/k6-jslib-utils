@@ -175,19 +175,22 @@ function tagWithCurrentStageProfile() {
 
     let getStageProfile = function () {
         let currentIndex = getCurrentStageIndex()
-        if (currentIndex < 1) {
-            return 'ramp-up'
-        }
-
-        let stages = exec.test.options.scenarios[exec.scenario.name].stages
+        let scenario = exec.test.options.scenarios[exec.scenario.name]
+        let stages = scenario.stages
         let current = stages[currentIndex]
-        let previous = stages[currentIndex - 1]
+        let previousTarget =
+            scenario.executor === 'ramping-arrival-rate'
+                ? (scenario.startRate ?? 0)
+                : (scenario.startVUs ?? 1)
+        if (currentIndex > 0) {
+            previousTarget = stages[currentIndex - 1].target
+        }
 
-        if (current.target > previous.target) {
+        if (current.target > previousTarget) {
             return 'ramp-up'
         }
 
-        if (previous.target == current.target) {
+        if (previousTarget == current.target) {
             return 'steady'
         }
 
