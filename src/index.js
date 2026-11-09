@@ -220,6 +220,46 @@ function randomItem(arrayOfItems) {
     return arrayOfItems[Math.floor(Math.random() * arrayOfItems.length)]
 }
 
+/**
+ * Returns an array of random unique items from an array or array-like collection
+ * without mutating the original collection, using the Sparse Partial Fisher-Yates algorithm.
+ *
+ * @param {Array|Object} arrayOfItems - Array or ArrayLike object (e.g. k6 SharedArray)
+ * @param {number} count - Number of unique items to return
+ * @returns {Array} - Array of sampled unique items
+ */
+function randomItems(arrayOfItems, count) {
+    if (arrayOfItems == null || typeof arrayOfItems.length !== 'number') {
+        throw new TypeError('arrayOfItems must be an Array or ArrayLike object')
+    }
+
+    if (typeof count !== 'number' || Number.isNaN(count)) {
+        throw new TypeError('count must be a number')
+    }
+
+    if (count <= 0 || arrayOfItems.length === 0) {
+        return []
+    }
+
+    const length = arrayOfItems.length
+    const k = Math.min(Math.floor(count), length)
+    const map = new Map()
+    const result = new Array(k)
+
+    for (let i = 0; i < k; i++) {
+        // Pick random index j in range [i, length - 1]
+        const j = i + Math.floor(Math.random() * (length - i))
+
+        const effectiveJ = map.has(j) ? map.get(j) : j
+        const effectiveI = map.has(i) ? map.get(i) : i
+
+        result[i] = arrayOfItems[effectiveJ]
+        map.set(j, effectiveI)
+    }
+
+    return result
+}
+
 function randomString(length, charset = 'abcdefghijklmnopqrstuvwxyz') {
     let res = ''
     while (length--) res += charset[(Math.random() * charset.length) | 0]
@@ -373,6 +413,7 @@ export {
     normalDistributionStages,
     randomIntBetween,
     randomItem,
+    randomItems,
     randomString,
     uuidv4,
 }
